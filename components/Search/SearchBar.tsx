@@ -1,12 +1,12 @@
 
-import React, { useState } from 'react'
+import React from 'react'
 import Select2 from './Select2';
 
 const SearchBar = () => {
 
     return (
 
-        <div className='flex flex-row text-center justify-center mt-3 mr-3 border-r-2 mb-3 rounded-md bg-white box-border'>
+        <div className='flex flex-row text-center justify-center mt-3 mr-3 border-2 mb-3 rounded-lg bg-white box-border'>
             <input
                 type="text"
                 placeholder="Vị trí ứng tuyển"
