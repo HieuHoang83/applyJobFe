@@ -1,65 +1,3 @@
-// "use client";
-
-// import Link from "next/link";
-
-// import {
-//   CardTitle,
-//   CardDescription,
-//   CardHeader,
-//   CardContent,
-//   CardFooter,
-//   Card,
-// } from "@/components/ui/card";
-
-// import { Label } from "@/components/ui/label";
-// import { Input } from "@/components/ui/input";
-
-// export function LoginForm() {
-//   return (
-//     <div className="w-full max-w-md">
-//       <form>
-//         <Card>
-//           <CardHeader className="space-y-1">
-//             <CardTitle className="text-3xl font-bold">Sign In</CardTitle>
-//             <CardDescription>
-//               Enter your details to sign in to your account
-//             </CardDescription>
-//           </CardHeader>
-//           <CardContent className="space-y-4">
-//             <div className="space-y-2">
-//               <Label htmlFor="email">Email</Label>
-//               <Input
-//                 id="identifier"
-//                 name="identifier"
-//                 type="text"
-//                 placeholder="username or email"
-//               />
-//             </div>
-//             <div className="space-y-2">
-//               <Label htmlFor="password">Password</Label>
-//               <Input
-//                 id="password"
-//                 name="password"
-//                 type="password"
-//                 placeholder="password"
-//               />
-//             </div>
-//           </CardContent>
-//           <CardFooter className="flex flex-col">
-//             <button className="w-full"><Link href={'/job'}>Log In</Link></button>
-//           </CardFooter>
-//         </Card>
-//         <div className="mt-4 text-center text-sm">
-//           Don't have an account?
-//           <Link className="underline ml-2" href="/signup">
-//             Sign Up
-//           </Link>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// }
-
 "use client"
  
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -75,10 +13,24 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+      } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useTransition } from "react"
+import { useState } from "react"
+import toast, {Toaster} from "react-hot-toast"
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardHeader, 
+  CardFooter, 
+  CardTitle
+} from "../ui/card"
+import Link from "next/link"
+import { useRouter } from 'next/navigation'
 
 export function LoginForm() {
+  const router = useRouter()
   // 1. Define your form.
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -87,14 +39,37 @@ export function LoginForm() {
       password: ""
     },
   })
- 
-  function onSubmit(values: z.infer<typeof LoginSchema>) {
-    //
-    console.log(values)
+  
+  const [isPending, startTransition] = useTransition()
+  const [data, setData] = useState<any>()
+  
+  console.log("---Re-Render")
+  async function fakeSubmit(values : any) {
+    return new Promise((resolve) => setTimeout(() => resolve(values), 2000));
   }
-
-  return (
+  
+  function onSubmit(values: z.infer<typeof LoginSchema>) {
+    startTransition(async () => {
+      const result = await fakeSubmit(values);
+      setData(result)
+      if (result) {
+        toast.success("Đăng nhập thành công.")
+        router.push("/job")
+      }
+      else toast.error("Đã xảy ra lỗi")
+    });
+  }
+    return (
     <Form {...form}>
+      <div><Toaster/></div>
+      <Card>
+          <CardHeader className="space-y-1">
+            <CardTitle className="text-3xl font-bold">Log In</CardTitle>
+            <CardDescription>
+              Hãy nhập thông tin đăng nhập của bạn.
+            </CardDescription>
+          </CardHeader>
+      <CardContent>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
@@ -103,7 +78,7 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="example@email.com" {...field} />
+                <Input placeholder="example@email.com" {...field} disabled={isPending}/>
               </FormControl>
               <FormDescription>
                 Địa chỉ email
@@ -119,17 +94,22 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="...." {...field} />
+                <Input placeholder="••••••••" {...field} disabled={isPending}/>
               </FormControl>
               <FormDescription>
-                This is your public display name.
+                Mật khẩu có độ dài 8 - 16 ký tự
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isPending} className="bg-blue-800">Đăng nhập</Button>
       </form>
+      </CardContent>
+      <CardFooter>
+        Chưa có tài khoản? Đăng ký ngay tại<pre> </pre><Link href={"/signup"}><u className="text-sky-700">Sign Up</u></Link>
+      </CardFooter>
+      </Card>
     </Form>
   )
 }

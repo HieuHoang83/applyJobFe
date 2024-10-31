@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "@/components/NavigationBar/NavBar";
-import Header from "@/components/Header/Header";
-
+import { ProgressBarLayout } from "@/components/Common/process-bar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,8 +19,9 @@ export default function RootLayout({
       <title>CV Website</title>
       <body>
         <NavBar />
-       
-        {children}
+        <ProgressBarLayout>
+          {children}
+        </ProgressBarLayout>
         
       </body>
     </html>

@@ -2,7 +2,9 @@
 import SearchBar from '@/components/Search/SearchBar'
 import React from 'react'
 
-const JobPage = () => {
+[]
+
+export default function JobPage() {
     return (
            
            <div className='bg-custom h-[100vh] '>
@@ -16,5 +18,3 @@ const JobPage = () => {
            
     )
 }
-
-export default JobPage

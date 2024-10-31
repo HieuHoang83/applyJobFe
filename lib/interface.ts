@@ -1,3 +1,5 @@
+import { number } from "zod";
+
 export interface MenuItemType {
     id: string;
     title: string;
@@ -7,3 +9,11 @@ export interface MenuItemType {
         titleIcon: string;
     }[]
 }
+
+export interface JobPost {
+    id: number;
+    company: string;
+    title: string;
+    author: string;
+    content: string;
+  }
