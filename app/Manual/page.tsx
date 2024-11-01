@@ -9,3 +9,7 @@ const Manual = () => {
 }
 
 export default Manual
+
+
+
+

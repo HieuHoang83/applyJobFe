@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { SwitchStatus } from "../ui/Status";
 import { useCallback, useState } from "react";
 function SwitchStatusBtn() {
-  let [checked, setChecked] = useState(false);
+  let [checked, setChecked] = useState(true);
   let onchange = () => {
     setChecked(!checked);
   };

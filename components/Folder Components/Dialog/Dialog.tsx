@@ -16,7 +16,7 @@ export function DialogDemo() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button>Ứng tuyển trực tiếp</button>
+        <button>Ứng tuyển ngay</button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] max-h-[800px]">
         <DialogHeader>
@@ -55,7 +55,7 @@ export function DialogDemo() {
         <DialogFooter className="justify-center">
           <button
             type="submit"
-            className="border border-gray-700 rounded-lg m-3 p-2 bg-green-500"
+            className=" hover:bg-green-700 border text-white rounded-lg m-3 p-2 bg-green-600"
           >
             Nộp hồ sơ ứng tuyển
           </button>
