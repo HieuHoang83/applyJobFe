@@ -7,3 +7,26 @@ export interface MenuItemType {
         titleIcon: string;
     }[]
 }
+
+export interface PostingTable {
+    id: string;
+    title: string;
+    location: string;
+    startDate: string;
+    endDate: string;
+}
+
+export interface InfoJob {
+    id: string;
+    urlLogo: string;
+    title: string;
+    titleCompany: string[];
+    nameCompany: string;
+    salary: string;
+    location: string[];
+    locationDetail: string[];
+    exp: string;
+    interest: string[];
+    working_time: string;
+    request: string[];
+}
