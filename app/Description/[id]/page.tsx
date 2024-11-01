@@ -273,10 +273,11 @@ const InfoJob = [
 
 
 const DescriptinPage = ({ params }: { params: { id: string } }) => {
-    const job = InfoJob[parseInt(params.id)];
+    const job = InfoJob[parseInt(params.id) - 1];
+    console.log(job);
     return (
         <div>
-            {job ? <DesriptionJobPage job={job} /> : <p>Không tìm thấy công việc.</p>}
+            {job ? <DesriptionJobPage job={job} /> : <p>Không tìm thấy công việc...</p>}
 
         </div>
     )
