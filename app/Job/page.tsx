@@ -274,7 +274,6 @@ const JobPage = () => {
     }
   ]
 
-
   return (
     <div className=" h-[100vh] ">
       <div className=" mx-[15%]  pt-[60px]">

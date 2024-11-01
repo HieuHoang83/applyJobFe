@@ -114,7 +114,7 @@ const NavBar = () => {
     ]
     return (
         <div>
-            <nav className='flex flex-row  items-center justify-between ml-[20px] h-[60px] rounded-[10px] '>
+            <nav className='flex flex-row bg-gray-50  items-center justify-between ml-[20px] h-[60px] rounded-[10px] '>
                 <div className='flex flex-row  items-center justify-center'>
                     <Link href="/" className='object-fit justify-self-center col-start-2 md:w-36 mr-[10px]'>
                         <img src="https://static.topcv.vn/v4/image/logo/topcv-logo-10-year.png" alt="" />

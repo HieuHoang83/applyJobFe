@@ -1,6 +1,5 @@
 "use client";
 
-
 import { DialogDemo } from "@/components/Folder Components/Dialog/Dialog";
 import { InfoJob } from "@/lib/interface";
 import React from "react";
@@ -30,8 +29,6 @@ export function Itemdescription({ title, des }: ItemdescriptionProp) {
 interface DescriptinPageProp {
   job: InfoJob
 }
-
-
 const DesriptionJobPage: React.FC<DescriptinPageProp> = ({ job }) => {
   let Title = () => {
     return (
